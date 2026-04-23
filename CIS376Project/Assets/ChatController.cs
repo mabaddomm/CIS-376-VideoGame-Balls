@@ -8,6 +8,13 @@ public class ChatController : MonoBehaviour
 
     [SerializeField] private GameObject[] locations;
     [SerializeField] private int health = 10;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private float fireRate = 1f;
+    [SerializeField] private float walkSpeed = 3f;
+    [SerializeField] private float runSpeed = 5f;
+
+    private float nextFireTime = 0f;
     
     private NavMeshAgent nav;
     private GameObject player;
@@ -51,7 +58,7 @@ public class ChatController : MonoBehaviour
     void StartWalking()
     {
         SetState(State.WALKING, "Walk");
-        nav.speed = 3.5f;
+        nav.speed = walkSpeed;
         nav.SetDestination(locations[currentLocation].transform.position);
 
     }
@@ -59,7 +66,9 @@ public class ChatController : MonoBehaviour
     void UpdateChasing() {
         nav.isStopped = false;
         nav.SetDestination(player.transform.position);
-        nav.speed = 7f;
+        nav.speed = runSpeed;
+
+        shoot();
     }
 
 
@@ -75,14 +84,30 @@ public class ChatController : MonoBehaviour
             StartWalking();
         }
 
-        if (state == State.WALKING && nav.remainingDistance < 0.6f){
+        if (state == State.WALKING && nav.remainingDistance < 1f){
             nav.SetDestination(locations[++currentLocation % locations.Length].transform.position);
+        }
+
+        if (state == State.CHASING && nav.remainingDistance > 10f) {
+            StartWalking();
         }
     
         // Go after them!
         if (state == State.CHASING) {
             UpdateChasing();
         }
+    }
+
+    void shoot()
+    {
+        if (Time.time < nextFireTime) return;
+
+        nextFireTime = Time.time + 1f / fireRate;
+        GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+
+        // Aim at player
+        Vector3 direction = (player.transform.position - firePoint.position).normalized;
+        bullet.transform.forward = direction;
     }
     
 
