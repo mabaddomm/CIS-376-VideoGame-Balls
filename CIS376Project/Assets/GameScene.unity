@@ -427,7 +427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: ce17c5279081c47deb2fead1f9729f61, type: 3}
   m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1260,7 +1259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: ce17c5279081c47deb2fead1f9729f61, type: 3}
   m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1620,7 +1618,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7eea5936a2dbc40f3abc0900e7773ebd, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: caf78e6c836d04a8d8383707a83164aa, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1752186714
 Transform:
