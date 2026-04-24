@@ -99,4 +99,5 @@ public class PlayerController : MonoBehaviour
             _rb.MovePosition(transform.position + move * moveSpeed * Time.fixedDeltaTime);
         }
     }
+    
 }
