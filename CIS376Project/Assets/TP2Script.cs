@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TP1Script : MonoBehaviour
+public class TP2Script : MonoBehaviour
 {
     public Vector3 destination;
 
