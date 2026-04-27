@@ -111,5 +111,24 @@ public class ChatController : MonoBehaviour
     }
     
 
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("TakeDamage called");
+
+        health -= damage;
+
+        Debug.Log("Robot health now: " + health);
+
+        if (health <= 0)
+        {
+            Debug.Log("Robot dying...");
+            Die();
+        }
+    }
+
+void Die()
+{
+    Destroy(gameObject);
+}
 
 }

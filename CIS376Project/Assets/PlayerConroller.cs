@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
- 
+ using System.Collections;
  
 public class PlayerController : MonoBehaviour
 {
@@ -90,12 +90,38 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-     void OnAttack(InputValue value)
+    void OnAttack(InputValue value)
     {
         if (value.isPressed)
         {
             Debug.Log("Punch pressed");
             _animator.SetTrigger("FightTrigger");
+
+            StartCoroutine(DelayedPunchDamage());
+        }
+    }
+
+
+    IEnumerator DelayedPunchDamage()
+    {
+        yield return new WaitForSeconds(1f); // wait 1 second
+
+        Collider[] hits = Physics.OverlapSphere(
+            transform.position,
+            2f
+        );
+
+        foreach(Collider c in hits)
+        {
+            ChatController enemy =
+                c.GetComponentInParent<ChatController>();
+
+            if(enemy != null)
+            {
+                Debug.Log("Punch connected after delay");
+                enemy.TakeDamage(20);
+                break;
+            }
         }
     }
     
