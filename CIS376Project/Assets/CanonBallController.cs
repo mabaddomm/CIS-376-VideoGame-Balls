@@ -23,7 +23,7 @@ public class CanonBallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit player!");
+           // Debug.Log("Hit player!");
             // Apply damage here
         }
 

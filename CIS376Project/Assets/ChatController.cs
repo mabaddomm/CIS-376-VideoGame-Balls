@@ -45,7 +45,7 @@ public class ChatController : MonoBehaviour
     {
         state = newState;
         if (animation != null) animator.Play(animation);
-        Debug.Log(state);
+       // Debug.Log(state);
     }
 
 

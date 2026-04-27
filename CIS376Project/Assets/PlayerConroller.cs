@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         _moveInput = value.Get<Vector2>();
-                Debug.Log(_moveInput);
+               /// Debug.Log(_moveInput);
 
         _animator.SetBool("IsMoving", _moveInput.sqrMagnitude > 0.1f);
        // _animator.SetBool("IsMoving", true);
@@ -67,20 +67,10 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, _yRotation, 0f);
     }
  
-    // void OnFire(InputValue value){
-    //     Vector3 spawnPos = transform.position + transform.forward * 2f;
-    //     spawnPos.y += 1.0f;
-    //     Quaternion rot = transform.rotation;
-
-    //     GameObject arrow = Instantiate(arrowPrefab, spawnPos, rot);
-    //     arrow.transform.localRotation = transform.rotation * Quaternion.Euler(0, 0 ,0f);
-
-
-    // }
  
     void OnJump(InputValue value)
     {
-        Debug.Log(IsGrounded());
+        //Debug.Log(IsGrounded());
         if (value.isPressed && IsGrounded())
         {
             _animator.SetTrigger("JumpTrigger");
@@ -97,6 +87,15 @@ public class PlayerController : MonoBehaviour
                 new Vector3(_moveInput.x, 0f, _moveInput.y).normalized
             );
             _rb.MovePosition(transform.position + move * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+     void OnAttack(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            Debug.Log("Punch pressed");
+            _animator.SetTrigger("FightTrigger");
         }
     }
     
